@@ -1,4 +1,5 @@
 export 'src/clef.dart';
+export 'src/key_signature.dart';
 export 'src/midi_note.dart';
 export 'src/musical_accidental.dart';
 export 'src/musical_chords.dart';
