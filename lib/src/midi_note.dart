@@ -23,7 +23,10 @@ class MidiNote {
     final exactNoteIndex = midiNumber % 12;
     int noteIndex = whiteNoteOffsets.indexOf(exactNoteIndex);
 
-    // Calculate accidental based on preference
+    // Calculate accidental based on preference. Bu dal yalnız siyah tuşlarda
+    // çalışır (pc 1,3,6,8,10): komşu beyaz harf hep aynı oktavdadır, ofset
+    // ±1'dir. (0.0.3 düzeltmesi: bemol dalı fazladan -12 düşüyordu → siyah
+    // tuşlarda -13 ofsetle exception atıyordu.)
     MusicalAccidental? accidental;
     if (noteIndex == -1) {
       if (preferSharps) {
@@ -32,7 +35,7 @@ class MidiNote {
         accidental = MusicalAccidental.fromOffsetOrNull(accidentalOffset);
       } else {
         noteIndex = whiteNoteOffsets.indexOf((midiNumber + 1) % 12);
-        final flatOffset = (midiNumber % 12) - whiteNoteOffsets[noteIndex] - 12;
+        final flatOffset = (midiNumber % 12) - whiteNoteOffsets[noteIndex];
         accidental = MusicalAccidental.fromOffsetOrNull(flatOffset);
       }
     }

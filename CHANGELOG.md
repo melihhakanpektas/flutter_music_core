@@ -1,3 +1,9 @@
+## 0.0.3
+
+* Düzeltme: `MidiNote.fromMidiNumber(preferSharps: false)` siyah tuşlarda
+  fazladan `-12` düşüp `-13` ofsetle exception atıyordu. Bemol tercihi artık
+  komşu üst beyaz harf + ♭ verir (61 → Re♭4). İlk `MidiNote` testleri eklendi.
+
 ## 0.0.2
 
 * `KeySignature` eklendi: MusicXML'in `fifths` modeli (-7..7; + diyez,
